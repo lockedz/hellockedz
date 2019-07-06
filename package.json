@@ -1,0 +1,23 @@
+{
+  "name": "hellockedz",
+  "version": "1.0.0",
+  "description": "Twitch Bot Test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "twitch",
+    "bot",
+    "test",
+	"kripparian",
+	"bet",
+	"betting"
+  ],
+  "author": "lockedz",
+  "license": "ISC",
+  "dependencies": {
+    "twitch-js": "^1.2.17",
+    "weather-js": "^2.0.0"
+  }
+}
