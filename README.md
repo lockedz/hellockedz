@@ -31,4 +31,6 @@ Update:
 
 - Change in ./bin/globals.js line 20 the "Bot" to watch for the bets (Streamlabs) in Kripp's case;
 
-- Change in ./obj/options.js line 9, 10 and 12 with the bot nick, bot oath hash and channel(s) to mine respectively.
+- Change in ./obj/options.js line 9, 10 and 12 with the bot nick, bot oath hash and channel(s) to mine respectively;
+
+- Change in ./obj/Bot.js line 7 the "bot owner". Some commands depend on the owner/are only owner available;
