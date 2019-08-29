@@ -22,3 +22,13 @@ And sorry, mods, if it was obnoxious enough to warrant a ban. Mah bad.
     
     
 - lockedz 05/07/2019 (inutil.mente@yahoo.com.br)
+
+
+-----------------------------
+
+Update:
+- Changed a lot of things. Since the bot was/is banned (it's not allowed at all to have automatic responses or messages), I did this more as a personal hobby. It works pretty close with Streamlabs (automatic checking when bets have opened, you have that option in the code);
+
+- Change in ./bin/globals.js line 20 the "Bot" to watch for the bets (Streamlabs) in Kripp's case;
+
+- Change in ./obj/options.js line 9, 10 and 12 with the bot nick, bot oath hash and channel(s) to mine respectively.
