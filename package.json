@@ -1,6 +1,6 @@
 {
   "name": "hellockedz",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Twitch Bot Test",
   "main": "index.js",
   "scripts": {
@@ -9,10 +9,7 @@
   "keywords": [
     "twitch",
     "bot",
-    "test",
-	"kripparian",
-	"bet",
-	"betting"
+    "test"
   ],
   "author": "lockedz",
   "license": "ISC",
