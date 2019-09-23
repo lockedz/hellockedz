@@ -34,3 +34,7 @@ Update:
 - Change in ./obj/options.js line 9, 10 and 12 with the bot nick, bot oath hash and channel(s) to mine respectively;
 
 - Change in ./obj/Bot.js line 7 the "bot owner". Some commands depend on the owner/are only owner available;
+
+
+CHANGELOG - 23/09/2019
+- Added support for PvE bets (Kripp's PvE bets are: 'before' (low tier), 'during' (mid tier) and 'finish' (high tier);
