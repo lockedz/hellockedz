@@ -3,10 +3,18 @@ const GLOBALS = require('../bin/globals');
 
 
 const Analytics = {
+    IS_IT_ARENA: true, // Could be PvE content (so, false) (betting on bosses)
     FLAG_ANALYTICS: false,
     IS_THERE_A_MAXIMUM_BET_VALUE: true,
     MAX_BET_VALUE: 100,
     VERBOSE: true,
+
+    setIsItArena: (isIt) => { // typedef isIt = bool
+        Analytics.IS_IT_ARENA = isIt;    
+    },
+    isItArena: () => { // FIXME: Needed?
+        return Analytics.IS_IT_ARENA;
+    },
 
     toggleVerbose: () => {
         Analytics.VERBOSE = !Analytics.VERBOSE;
@@ -62,14 +70,25 @@ const Analytics = {
         let totalBetsLow, totalBetsMid, totalBetsHigh = 0;
         let totalAmountLow, totalAmountMid, totalAmountHigh = 0;
         let percentBetsLow, percentBetsMid, percentBetsHigh = 0;
+        let betLowTierText, betMidTierText, betHighTierText = '';
+
+        if (Analytics.isItArena()) {
+            betLowTierText = 'low';
+            betMidTierText = 'mid';
+            betHighTierText = 'high';
+        } else { // else, it's PvE Betting (bosses run)
+            betLowTierText = 'before';
+            betMidTierText = 'during';
+            betHighTierText = 'finish';
+        }
     
-        totalBetsLow = bets['low']['counter'];
-        totalBetsMid = bets['mid']['counter'];
-        totalBetsHigh = bets['high']['counter'];
+        totalBetsLow = bets[betLowTierText]['counter'];
+        totalBetsMid = bets[betMidTierText]['counter'];
+        totalBetsHigh = bets[betHighTierText]['counter'];
     
-        totalAmountLow = bets['low']['amount'];
-        totalAmountMid = bets['mid']['amount'];
-        totalAmountHigh = bets['high']['amount'];
+        totalAmountLow = bets[betLowTierText]['amount'];
+        totalAmountMid = bets[betMidTierText]['amount'];
+        totalAmountHigh = bets[betHighTierText]['amount'];
         
         if (GLOBALS.totalBets !== 0) {
             percentBetsLow = (totalBetsLow / GLOBALS.totalBets * 100).toFixed(2);
@@ -79,7 +98,7 @@ const Analytics = {
             percentBetsLow = percentBetsMid = percentBetsHigh = 0;
         }
 
-        sayBetsAnalyticsString = `LOW: ${percentBetsLow}% (${totalAmountLow} lettuce) | MID: ${percentBetsMid}% (${totalAmountMid} lettuce) | HIGH: ${percentBetsHigh}% (${totalAmountHigh} lettuce); TOTAL BETS: ${GLOBALS.totalBets} (${GLOBALS.totalLettuce} TOTAL LETTUCE)`;
+        sayBetsAnalyticsString = `${betLowTierText.toUpperCase()}: ${percentBetsLow}% (${totalAmountLow} lettuce) | ${betMidTierText.toUpperCase()}: ${percentBetsMid}% (${totalAmountMid} lettuce) | ${betHighTierText.toUpperCase()}: ${percentBetsHigh}% (${totalAmountHigh} lettuce); TOTAL BETS: ${GLOBALS.totalBets} (${GLOBALS.totalLettuce} TOTAL LETTUCE)`;
         // Uncomment if you want to specify (and write to log with the text) that the Bets are off when this function was called
         // if (!Analytics.isBotAnalyticsOn()) {
         //     sayBetsAnalyticsString += ` (Bets are OFF)`;
@@ -213,7 +232,7 @@ const Analytics = {
 
         // TURN OFF ANALYTICS
         Analytics.setAnalytics(false);
-        UTIL.doLog(`Analytics is now OFF`);
+        UTIL.doLog(`Analytics is now ${UTIL.boolToText(Analytics.getAnalytics())}`);
 
         // As soon as bets end, get the statistics AND the top 3 betters
         // UPDATE: topBetters is kinda useless now since it will almost always be '100' (MAX_BET_VALUE) for the top 3, 5 mabye 10... uncomment if you're willing to try
