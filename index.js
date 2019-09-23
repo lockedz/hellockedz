@@ -20,6 +20,7 @@ const reportInformations = (addr = undefined, port = undefined) =>
     UTIL.doLog(`Channel: \x1b[32m${Bot.options.channels}\x1b[0m`);
         console.log(``); // one new line
     UTIL.doLog(`Analytics is \x1b[33m${Analytics.getAnalytics()}\x1b[0m \t\t\t|\t Auto Bet Analysis (per \'\x1b[32m${GLOBALS.realBetBotNickname}\x1b[0m\') is \x1b[33m${GLOBALS.allowAutoMining.analytics}\x1b[0m`);
+    UTIL.doLog(`Analytics working with ARENA is \x1b[33m${Analytics.isItArena()}\x1b[0m`);
     UTIL.doLog(`Emojis Mining is \x1b[33m${Emoji.ACTIVE}\x1b[0m (\x1b[32m${GLOBALS.EMOJI_LIST_SIZE}\x1b[0m Emojis) \t|\t Auto Emojis Analysis is \x1b[33m${GLOBALS.allowAutoMining.emojis}\x1b[0m`);
         console.log(`_`.repeat(120)); // one 'visual separator'
 }
@@ -94,15 +95,28 @@ client.on('chat', async (channel, user, msg, self) => {
             let betType = messageArrayLowerCase[1];
             let betAmountAkaLettuce = -1;
 
-            switch (betType) {
-                case 'low':
-                case 'mid':
-                case 'high':
-                    break;
-                default:
-                    return;
+            if (Analytics.isItArena()) {
+                switch (betType) {
+                    // Arena bets
+                    case 'low':
+                    case 'mid':
+                    case 'high':
+                        break;
+                    default:
+                        return;
+                }
+            } else {
+                switch (betType) {
+                    // PvE bets
+                    case 'before':
+                    case 'during':
+                    case 'finish':
+                        break;
+                    default:
+                        return;
+                }
             }
-            // FIXME:Colocar com logica ternaria... colocar as variaveis mais organizadas tb
+            // FIXME: Colocar com logica ternaria... colocar as variaveis mais organizadas tb
             if (messageArrayLowerCase[2] === 'all' && Analytics.getIsThereAMaximumBetValue()) {
                 betAmountAkaLettuce = Analytics.getMaxBetValue();
             } else {
@@ -190,7 +204,15 @@ client.on('chat', async (channel, user, msg, self) => {
         // COMMANDS ONLY EXECUTED BY THE BOT OWNER *******
         // ******************************
         if (user.username === Bot.OWNER) {
-             // ****************
+            // ****************
+            // DEFAULT IS TO BE ARENA BETS; USE THIS COMMAND TO TOOGLE
+            // ****************
+            if (messageLowerCase === 'betting is different') {
+                Analytics.setIsItArena(!Analytics.isItArena());
+                UTIL.doLog(`Betting set to work with arena IS ${Analytics.isItArena()}`, 2);
+            }
+
+            // ****************
             // TO END THE ANALYSIS:
             // ****************
             if (messageLowerCase === 'the end' && Analytics.isBotAnalyticsOn()) { // OLD !endanalytics
