@@ -17,7 +17,7 @@ BETTERS_OBJECT: {
 */
 module.exports.BETTERS_OBJECT = {};
 // Apparently, all usernames are lowercase in the user Object, so, cast whatever to lowercase
-module.exports.realBetBotNickname = 'yournicknamehere'.toLowerCase(); // FIXME: CHANGE TO Streamlabs AT KRIPP'S CHANNEL
+module.exports.realBetBotNickname = 'Streamlabs'.toLowerCase(); // FIXME: CHANGE TO Streamlabs AT KRIPP'S CHANNEL
 
 module.exports.handlerTmp = null;
 
@@ -48,6 +48,18 @@ module.exports.bets = {
         counter: 0,
         amount: 0
     },
+    'before': {
+        counter: 0,
+        amount: 0
+    },
+    'during': {
+        counter: 0,
+        amount: 0
+    },
+    'finish': {
+        counter: 0,
+        amount: 0
+    }
 };
 
 module.exports.LOCALEDATE_OPTIONS = {year:"numeric",month:"2-digit", day:"2-digit"};
