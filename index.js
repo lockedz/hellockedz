@@ -90,7 +90,6 @@ client.on('chat', async (channel, user, msg, self) => {
             let dateNow = new Date().toLocaleDateString(GLOBALS.LOCALEDATE_LOCAL, GLOBALS.LOCALEDATE_OPTIONS);
 
             // Only accepts 'low', 'mid','high' Strings
-			// TODO:	Add a VERBOSE boolean option to show in the console like "nickname bet <actual bet> recorded!"
             // FIXME:   Try to put this in a separated function. The 'return' will frick things up but maybe throwing an error and trying try/catch HERE in this flow works?
             let betType = messageArrayLowerCase[1];
             let betAmountAkaLettuce = -1;
