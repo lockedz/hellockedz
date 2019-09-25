@@ -232,7 +232,7 @@ const Analytics = {
 
         // TURN OFF ANALYTICS
         Analytics.setAnalytics(false);
-        UTIL.doLog(`Analytics is now ${UTIL.boolToText(Analytics.getAnalytics())}`);
+        //UTIL.doLog(`Analytics is now ${UTIL.boolToText(Analytics.getAnalytics())}`);
 
         // As soon as bets end, get the statistics AND the top 3 betters
         // UPDATE: topBetters is kinda useless now since it will almost always be '100' (MAX_BET_VALUE) for the top 3, 5 mabye 10... uncomment if you're willing to try
