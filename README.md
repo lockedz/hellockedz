@@ -1,6 +1,9 @@
 # hellockedz
 An analytics bot made to work mining Kripparian's (nl_kripp) chat.
 
+# Bot in execution while/after bets
+[[https://github.com/lockedz/hellockedz/blob/master/KrippsBotExample.png|alt=VeganScreenshot]]
+
 
 
 ### This is a BOT created with with _nodejs_ and the _twitch-js_ module to analyze the !bet system in nl_kripp's channel.
