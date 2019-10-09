@@ -1,9 +1,9 @@
 # hellockedz
 An analytics bot made to work mining Kripparian's (nl_kripp) chat.
 
-# Bot in execution while/after bets
-![Vegan Screenshot](KrippsBotExample.png)
 
+### Bot in execution while/after bets
+![Vegan Screenshot](KrippsBotExample.png)
 
 
 ### This is a BOT created with with _nodejs_ and the _twitch-js_ module to analyze the !bet system in nl_kripp's channel.
@@ -32,12 +32,17 @@ And sorry, mods, if it was obnoxious enough to warrant a ban. Mah bad.
 Update:
 - Changed a lot of things. Since the bot was/is banned (it's not allowed at all to have automatic responses or messages), I did this more as a personal hobby. It works pretty close with Streamlabs (automatic checking when bets have opened, you have that option in the code);
 
-- Change in ./bin/globals.js line 20 the "Bot" to watch for the bets (Streamlabs) in Kripp's case;
+- Change at ./bin/globals.js line 20 the "Bot" to watch for the bets (Streamlabs) in Kripp's case;
 
-- Change in ./obj/options.js line 9, 10 and 12 with the bot nick, bot oath hash and channel(s) to mine respectively;
+- Change at ./obj/options.js line 9, 10 and 12 with the bot nick, bot oath hash and channel(s) to mine respectively;
 
-- Change in ./obj/Bot.js line 7 the "bot owner". Some commands depend on the owner/are only owner available;
+- Change at ./obj/Bot.js line 7 the "bot owner". Some commands depend on the owner/are only owner available;
 
 
-CHANGELOG - 23/09/2019
+### CHANGELOG
+#### 23/09/2019
 - Added support for PvE bets (Kripp's PvE bets are: 'before' (low tier), 'during' (mid tier) and 'finish' (high tier);
+
+#### 09/10/2019
+- Refactor of some code from index.js to Analytics.js
+- I thought that the bot was defaulting bets that were > MAX_BET_VALUE to MAX_BET_VALUE itself. It is not. It won't be considered a valid bet and no writing done. This behavior is intended
