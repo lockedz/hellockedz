@@ -2,7 +2,7 @@
 An analytics bot made to work mining Kripparian's (nl_kripp) chat.
 
 # Bot in execution while/after bets
-[[https://github.com/lockedz/hellockedz/blob/master/KrippsBotExample.png|alt=VeganScreenshot]]
+![Vegan Screenshot](KrippsBotExample.png)
 
 
 
