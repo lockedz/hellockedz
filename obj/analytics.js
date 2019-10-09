@@ -119,6 +119,22 @@ const Analytics = {
         GLOBALS.bets[type]['amount'] += amount;
     },
 
+    registerBets: (userUsername, betAmountAkaLettuce, betType, timeNow, dateNow) => {
+        GLOBALS.totalBets++;
+        GLOBALS.totalLettuce += betAmountAkaLettuce;
+
+        GLOBALS.BETTERS_LIST.push(userUsername);
+
+        // If this gets too 'heavy' to run... remove. There is no real need. Adjust the GLOBALS.BETTERS_OBJECT accordingly
+        // It shouldn't cause trouble ''cause we've already checked if the userUsername has already voted so userUsername SHOULD BE UNIQUE
+        GLOBALS.BETTERS_OBJECT[userUsername] = {};
+        GLOBALS.BETTERS_OBJECT[userUsername]['userName'] = userUsername;
+        GLOBALS.BETTERS_OBJECT[userUsername]['lettuceBet'] = betAmountAkaLettuce;
+        GLOBALS.BETTERS_OBJECT[userUsername]['betTier'] = betType;
+        GLOBALS.BETTERS_OBJECT[userUsername]['betTime'] = timeNow;
+        GLOBALS.BETTERS_OBJECT[userUsername]['betDate'] = dateNow;
+    },
+
     // TODO:    ADD ARGUMENTS TO SEARCH ONLY FOR SPECIFIC OPTIONS (TIME OF THE BET, OR ONLY LETTUCEAMOUNT, OR ONLY BET TIER)
     searchBetterStatus: (uniqueIDNickname) => { // Returns a String prettified with the current <arg> (nickname) bet statistics
         let prettyStringToReturn = ``;
@@ -244,7 +260,7 @@ const Analytics = {
         // FIXME:
         localTime = new Date().toLocaleTimeString('default', {hour12: false});
         localDate = new Date().toLocaleDateString(GLOBALS.LOCALEDATE_LOCAL, GLOBALS.LOCALEDATE_OPTIONS);
-        bettersUniqueIdFileName = `${localDate}.${localTime}`.replace(/:/g,'_'); // Remove the ":" from the time String to '_' so filenames accept it
+        bettersUniqueIdFileName = `${localDate}.${localTime}`.replace(/:/g,'_'); // Remove the ":" from the time String to '_' so Windows filenames accept it
         // WRITE TO FILE IN DISK
         // FIXME:   THE PATH IS BEING HARDCODED HERE. SHOULD BE AT THE OPTIONS FILE (?)
         UTIL.asyncWriteToLog(`[${localDate}.${localTime}] ${betAnalyticsNow}\n`, `./log/Bets.txt`, false); // ONLY APPEND, DO **NOT** OVERRIDE THE FILE
