@@ -41,6 +41,8 @@ I don't know how was it obnoxious enough to warrant a ban. But, welp.
 	// TODO: ALLOW !analyzebets TO WORK IF THERE IS A SECOND ARGUMENT (A NICKNAME) (JUST TO HIGHLIGHT WHOMEVER ASKS FOR ANALYTICS)
 
 // ---------------------------- NEW TODOS
+// TODO:    WHEN ANALYTICS GOES OFF, SEE IF WE CAN GET THE CURRENT VIEWERS FROM CHAT AND CALCULATE THE PERCENTAGE OF BETTERS ACCORDING TO TOTAL VIEWERS; THAT'S A NICE STATISTIC;
+
 // TODO:    ADD A COMMAND LIKE 'IZA  <classname>' THAT RECORDS THE CLASS OF THE CURRENT ARENA BETS AND ADDS TO THE BETS.TXT STRING. IF THIS COMMAND IS NOT EXECUTED, SIMPLY THERE WILL BE NO MENTION TO THE CLASS OF THE AREBA/BET (AS IS NOW)
 // TODO:    WE ARE CURRENTLY WRITING THE BETTERS AND STATISTICS, BUT WE HAVE TO READ THEM AT SOME POINT
 // FIXME:   THE BET ANALYSIS ARE BEING WRITTEN TO A SINGLE FILE, MULTILINE, INDEPENDENTLY OF WHICH DAY THE BETTING AS OCCURED, THAT IS DIFFERENT WITH THE BETTERS THEMSELVES
@@ -127,19 +129,7 @@ client.on('chat', async (channel, user, msg, self) => {
                 return; // If we have a maximum number to bet AND this persons's bet exceeds this maximum, let's ignore all and return
             }
 
-            GLOBALS.totalBets++;
-            GLOBALS.totalLettuce += betAmountAkaLettuce;
-
-            GLOBALS.BETTERS_LIST.push(userUsername);
-
-            // If this gets too 'heavy' to run... remove. There is no real need. Adjust the GLOBALS.BETTERS_OBJECT accordingly
-            // It shouldn't cause trouble ''cause we've already checked if the userUsername has already voted so userUsername SHOULD BE UNIQUE
-            GLOBALS.BETTERS_OBJECT[userUsername] = {};
-            GLOBALS.BETTERS_OBJECT[userUsername]['userName'] = userUsername;
-            GLOBALS.BETTERS_OBJECT[userUsername]['lettuceBet'] = betAmountAkaLettuce;
-            GLOBALS.BETTERS_OBJECT[userUsername]['betTier'] = betType;
-            GLOBALS.BETTERS_OBJECT[userUsername]['betTime'] = timeNow;
-            GLOBALS.BETTERS_OBJECT[userUsername]['betDate'] = dateNow;
+            Analytics.registerBets(userUsername, betAmountAkaLettuce, betType, timeNow, dateNow);
 
             Analytics.distributeBets(betType, betAmountAkaLettuce);
 
