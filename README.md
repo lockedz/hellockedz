@@ -8,7 +8,7 @@ An analytics bot made to work mining Kripparian's (nl_kripp) chat.
 
 ### This is a BOT created with with _nodejs_ and the _twitch-js_ module to analyze the !bet system in nl_kripp's channel.
 
-It only reads for each nickname the bets in the format "_!bet low|mid|high {number}_" and can provide statistics such as how many people voted, how many in each tier and the lettuce statistics.  
+It only reads for each nickname the bets in the format "_!bet low|mid|high {number}_" (update: it can read "_!bet before|during|finish {number}_" now too) and can provide statistics such as how many people voted, how many in each tier and the lettuce statistics. It will save to local disk (json): nicknames, full date and time of the bet, lettuce by person and bet by person. It also saves a plain text with the bet distribution.
   
   
 **It's by no means affiliated with Kripparian or his channel**; it's a **personal project** that I wanted because I'm a curious little one
