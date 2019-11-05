@@ -6,7 +6,7 @@ An analytics bot made to work mining Kripparian's (nl_kripp) chat.
 ![Vegan Screenshot](KrippsBotExample.png)
 
 
-### This is a BOT created with with _nodejs_ and the _twitch-js_ module to analyze the !bet system in nl_kripp's channel.
+### This is a BOT created with _nodejs_ and the _twitch-js_ module to analyze the !bet system in nl_kripp's channel.
 
 It only reads for each nickname the bets in the format "_!bet low|mid|high {number}_" (update: it can read "_!bet before|during|finish {number}_" now too) and can provide statistics such as how many people voted, how many in each tier and the lettuce statistics. It will save to local disk (json): nicknames, full date and time of the bet, lettuce by person and bet by person. It also saves a plain text with the bet distribution.
   
@@ -29,9 +29,7 @@ And sorry, mods, if it was obnoxious enough to warrant a ban. Mah bad.
 
 -----------------------------
 
-Update:
-- Changed a lot of things. Since the bot was/is banned (it's not allowed at all to have automatic responses or messages), I did this more as a personal hobby. It works pretty close with Streamlabs (automatic checking when bets have opened, you have that option in the code);
-
+### WHAT TO 'CONFIGURE' IN THE CODE
 - Change at ./bin/globals.js line 20 the "Bot" to watch for the bets (Streamlabs) in Kripp's case;
 
 - Change at ./obj/options.js line 9, 10 and 12 with the bot nick, bot oath hash and channel(s) to mine respectively;
@@ -40,6 +38,8 @@ Update:
 
 
 ### CHANGELOG
+- Changed a lot of things, since the bot itself is banned (it's not allowed at all to have automatic responses or messages), I did this more as a personal hobby. Its result is pretty close to Streamlabs but I can't have access to people's real lettuce so the bot cannot be 100% accurate;
+
 #### 23/09/2019
 - Added support for PvE bets (Kripp's PvE bets are: 'before' (low tier), 'during' (mid tier) and 'finish' (high tier);
 
